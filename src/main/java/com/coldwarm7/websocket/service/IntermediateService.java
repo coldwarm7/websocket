@@ -28,4 +28,12 @@ public class IntermediateService {
             intermediateDao.save(intermediate);
         }
     }
+
+    public void deleteGlossaryByUserId(int user_id,int glossary_id){
+        try {
+            intermediateDao.deleteByUser_idAndGlossary_id(user_id, glossary_id);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }

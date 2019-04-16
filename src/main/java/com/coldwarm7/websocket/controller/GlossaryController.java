@@ -49,4 +49,11 @@ public class GlossaryController {
         }
         return message;
     }
+
+    @PostMapping("/deleteGlossaryByUserId")
+    public Message deleteGlossaryByUserId(@RequestParam int user_id,@RequestParam int glossary_id){
+        intermediateService.deleteGlossaryByUserId(user_id, glossary_id);
+        Message message = new Message(true,null,0);
+        return message;
+    }
 }
