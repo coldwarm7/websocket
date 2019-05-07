@@ -6,6 +6,7 @@ import com.coldwarm7.websocket.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
 @RestController
@@ -16,7 +17,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/login")
-    public Message login(@RequestParam String username,@RequestParam String password){
+    public Message login(@RequestParam String username,@RequestParam String password,HttpSession httpSession){
         User user = userService.findByUsername(username);
         ArrayList<User> users  = new ArrayList<>();
         Message message = new Message();
@@ -29,6 +30,8 @@ public class UserController {
             message.setCode(true);
             users.add(user);
             message.setData(users);
+            httpSession.setAttribute("username", username);
+            httpSession.setAttribute("uid",user.getId());
             return message;
         }
         message.setData(users);

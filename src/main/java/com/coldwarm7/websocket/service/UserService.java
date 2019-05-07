@@ -30,4 +30,15 @@ public class UserService {
         userDao.save(user);
         return true;
     }
+
+    public String getnamebyid(int uid){
+        User user = null;
+        try {
+            user = userDao.findById(uid);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return user.getUsername();
+    }
+
 }
