@@ -40,5 +40,18 @@ public class UserService {
         }
         return user.getUsername();
     }
+    public boolean changePassword(String newPassword,String oldPassword,int id){
+        User user = null;
+        try {
+            user = userDao.findById(id);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        if (user !=null && user.getPassword().equals(oldPassword)){
+            userDao.changePassword(newPassword,id);
+            return true;
+        }
+        return false;
+    }
 
 }

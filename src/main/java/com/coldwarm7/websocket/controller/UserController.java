@@ -52,4 +52,15 @@ public class UserController {
         message.setData(users);
         return message;
     }
+    @PostMapping("/changePassword")
+    public Message changePassword(@RequestParam String newPassword,@RequestParam String oldPassword,@RequestParam int id){
+        boolean result = userService.changePassword(newPassword,oldPassword,id);
+        Message message = new Message();
+        if (result == true){
+            message.setCode(true);
+            return message;
+        }
+        message.setCode(false);
+        return message;
+    }
 }

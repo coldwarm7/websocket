@@ -61,7 +61,7 @@ public class ChatController {
         msg.setDate(new Date());
         msg.setFrom(-1L);//-1表示系统广播
         msg.setFromName("系统广播");
-        msg.setTo(0L);
+        msg.setTo((int) 0L);
         msg.setText(text);
         handler.broadcast(new TextMessage(new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create().toJson(msg)));
     }
